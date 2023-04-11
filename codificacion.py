@@ -1,17 +1,21 @@
 def codificar(mensaje):
-    # Reemplazar cada letra por su correspondiente ASCII
     mensaje_codificado = ""
     for letra in mensaje:
-        mensaje_codificado += str(ord(letra))
+        # Convertir cada letra en su correspondiente valor ASCII en formato de 3 dígitos
+        ascii_code = str(ord(letra)).zfill(3)
+        mensaje_codificado += ascii_code
     
     return mensaje_codificado
 
 
 def decodificar(mensaje_codificado):
-    # Convertir cada conjunto de 3 dígitos en su correspondiente letra ASCII
     mensaje_decodificado = ""
-    for i in range(0, len(mensaje_codificado), 3):
-        letra_ascii = int(mensaje_codificado[i:i+3])
-        mensaje_decodificado += chr(letra_ascii)
+    i = 0
+    while i < len(mensaje_codificado):
+        # Leer cada grupo de 3 dígitos y convertirlo en su correspondiente letra ASCII
+        ascii_code = int(mensaje_codificado[i:i+3])
+        letra = chr(ascii_code)
+        mensaje_decodificado += letra
+        i += 3
     
     return mensaje_decodificado
