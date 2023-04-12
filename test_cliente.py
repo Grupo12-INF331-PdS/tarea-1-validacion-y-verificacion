@@ -1,7 +1,6 @@
 import socket
+import codificacion
 
-
-#host = '127.0.0.1'
 port = 8000
 
 client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -10,17 +9,23 @@ print(f"Conectando a localhost, puerto {port}.")
 
 client.connect(('localhost', port))
 
-flag = True
-while flag:
+while True:
     msg = input(">> ") #str
+    snd = codificacion.codificar(msg)
+    if msg == "/exit":
+        snd = codificacion.codificar("*El cliente se ha desconectado...*")
+        
+        client.send(snd.encode())
+        break
     print("Enviando...")
-    client.send(msg.encode()) #bytes
-    
-    rsp = client.recv(1024)
-    print(f"-- {rsp.decode()}")
 
-    cont = input("Continuar?: ")
-    if cont == "N":
-        flag = False
+    client.send(snd.encode()) #bytes
+
+    print("Mensaje enviado.\nEsperando respuesta...")
+    rsp = codificacion.decodificar(client.recv(1024).decode())
+
+    print(f"-- {rsp}")
+    if rsp == "*Se ha cerrado el servidor...*":
+        break
 
 client.close()

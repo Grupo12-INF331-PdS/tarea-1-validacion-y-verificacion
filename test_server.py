@@ -1,7 +1,6 @@
 import socket
+import codificacion
 
-
-#host = '127.0.0.1'
 port = 8000
 
 server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -16,21 +15,20 @@ print("Esperando conexiones...")
 
 print(f"Conectando desde {client_a[0]}:{client_a[1]}.")
 
-
-
-flag = True
-while flag:
-    msg = client_s.recv(1024)
-    print(f"-- {msg.decode()}")
-
+while True:
+    print("Esperando mensaje de cliente...")
+    msg = codificacion.decodificar(client_s.recv(1024).decode())
+    print(f"-- {msg}")
+    if msg == "*El cliente se ha desconectado...*":
+        break
     rsp = input(">> ")
-
-    client_s.send(rsp.encode())
-
-    cont = input("Continuar?: ")
-    if cont == "N":
-        flag = False
-
+    snd = codificacion.codificar(rsp)
+    if rsp == "/exit":
+        snd = codificacion.codificar("*Se ha cerrado el servidor...*")
+        client_s.send(snd.encode())
+        break
+    client_s.send(snd.encode())
+    
 client_s.close()
 
 server.close()
