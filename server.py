@@ -23,7 +23,7 @@ while True:
         break
     rsp = input(">> ")
     while len(rsp) > 341:
-        print("El límite de caracteres por mensaje es de 342...")
+        print("El límite de caracteres por mensaje es de 341...")
         rsp = input(">> ") #str
     snd = codificacion.codificar(rsp)
     if rsp == "/exit":
