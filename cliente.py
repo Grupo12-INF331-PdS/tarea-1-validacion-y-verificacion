@@ -12,7 +12,7 @@ client.connect(('localhost', port))
 while True:
     msg = input(">> ") #str
     while len(msg)>341:
-        print("El límite de caracteres por mensaje es de 342...")
+        print("El límite de caracteres por mensaje es de 341...")
         msg = input(">> ") #str
 
     snd = codificacion.codificar(msg)
