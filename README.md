@@ -16,24 +16,30 @@ La clonación debe ser realizada en ambas máquinas.
 Ambas máquinas deben estar conectadas a la misma red WiFi.
 
 Ejecutar en la máquina que cumplirá el rol de servidor:
-`python server.py`
-La máquina entrará en espera de un cliente.
 
-La otra máquina será el cliente:
+`python server.py`
+
+La máquina entrará en espera de una conexión.
+
+La otra máquina actuará como el cliente:
+
 `python cliente.py`
+
 Esperar a que se establezca la conexión y ¡Listo!, ambas máquinas podrán interactuar.
 
 El cliente debe ser el primero en enviar un mensaje, de esta forma se entrará en una especie de mensajería tipo "correos electrónicos" entre las máquinas.
 
 Para finalizar la conexión, escribir "/exit" en el espacio de mensajería:
+
 `>> /exit`
+
 Si una de las dos máquinas finaliza la sesión, la otra automáticamente se desconectará y terminará el programa.
+
+*Alternativamente, puedes ejecutar ambos programas en terminales distintas usando tu editor favorito,de esta forma una terminal actuará como servidor y la otra como cliente. Aplican los mismos pasos anteriores.*
 
 ## ¿Cómo contribuir?
 
-¡Aceptamos cualquier tipo de aporte! Somos un equipo pequeño en busca de experiencia,
-por lo que tu sabiduría es bienvenida. Abre un Pull Request si deseas aportarnos con
-alguna mejora que hayamos pasado por alto.
+¡Aceptamos cualquier tipo de aporte! Somos un equipo pequeño en busca de experiencia, por lo que tu sabiduría es bienvenida. Abre un Pull Request si deseas aportarnos con alguna mejora que hayamos pasado por alto.
 
 ## Licencia
 
